@@ -1,0 +1,28 @@
+// Import this file at https://dbdiagram.io to export ERD as PNG
+
+Table users {
+  id bigserial [pk, increment]
+  email varchar(255) [not null, unique]
+  password varchar(255) [not null]
+  role varchar(20) [not null, note: 'USER or ADMIN']
+  created_at timestamp [not null, default: `now()`]
+}
+
+Table books {
+  id bigserial [pk, increment]
+  title varchar(255) [not null]
+  author varchar(255) [not null]
+  isbn varchar(20) [not null, unique]
+  total_copies int [not null]
+  available_copies int [not null]
+  created_at timestamp [not null, default: `now()`]
+}
+
+Table reservations {
+  id bigserial [pk, increment]
+  user_id bigint [not null, ref: > users.id]
+  book_id bigint [not null, ref: > books.id]
+  status varchar(20) [not null, note: 'PENDING, ACTIVE, RETURNED, CANCELLED']
+  created_at timestamp [not null, default: `now()`]
+  returned_at timestamp
+}

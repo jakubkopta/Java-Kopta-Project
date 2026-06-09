@@ -39,6 +39,18 @@ Swagger UI: `http://localhost:8080/swagger-ui.html`
 docker compose down
 ```
 
+## Baza danych
+
+Schemat jest zarządzany przez **Flyway** (`src/main/resources/db/migration/`).
+
+Diagram ERD: [docs/erd.md](docs/erd.md)
+
+| Tabela | Opis |
+|--------|------|
+| `users` | Użytkownicy (role: USER, ADMIN) |
+| `books` | Książki w księgarni |
+| `reservations` | Rezerwacje / wypożyczenia |
+
 ## Autor
 
 Jakub Kopta
