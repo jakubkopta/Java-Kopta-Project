@@ -17,13 +17,15 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
 	List<Book> findByAuthorContainingIgnoreCase(String author);
 
+	List<Book> findByIsbnContainingIgnoreCase(String isbn);
+
 	boolean existsByIsbn(String isbn);
 
 	@Query("""
 			SELECT b FROM Book b
 			WHERE LOWER(b.title) LIKE LOWER(CONCAT('%', :query, '%'))
 			   OR LOWER(b.author) LIKE LOWER(CONCAT('%', :query, '%'))
-			   OR b.isbn LIKE CONCAT('%', :query, '%')
+			   OR LOWER(b.isbn) LIKE LOWER(CONCAT('%', :query, '%'))
 			""")
-	List<Book> search(@Param("query") String query);
+	List<Book> searchAllFields(@Param("query") String query);
 }

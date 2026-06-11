@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.bookstore.dto.BookRequest;
 import com.example.bookstore.dto.BookResponse;
 import com.example.bookstore.service.BookService;
+import com.example.bookstore.strategy.search.BookSearchType;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -41,9 +42,11 @@ public class BookController {
 	}
 
 	@GetMapping("/search")
-	@Operation(summary = "Search books by title, author or ISBN")
-	public List<BookResponse> searchBooks(@RequestParam(required = false) String q) {
-		return bookService.searchBooks(q);
+	@Operation(summary = "Search books by title, author, ISBN or all fields")
+	public List<BookResponse> searchBooks(
+			@RequestParam(required = false) String q,
+			@RequestParam(defaultValue = "ALL") BookSearchType type) {
+		return bookService.searchBooks(q, type);
 	}
 
 	@GetMapping("/{id}")

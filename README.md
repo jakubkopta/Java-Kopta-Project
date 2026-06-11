@@ -75,6 +75,22 @@ W Swaggerze kliknij **Authorize** i wklej token: `Bearer <token>`
 docker compose down
 ```
 
+## Wzorzec projektowy i polimorfizm
+
+Wyszukiwanie książek wykorzystuje wzorzec **Strategy** z polimorfizmem:
+
+- `BookSearchStrategy` - wspólny interfejs
+- `TitleSearchStrategy`, `AuthorSearchStrategy`, `IsbnSearchStrategy`, `AllFieldsSearchStrategy` - konkretne strategie
+- `BookSearchContext` - wybiera strategię na podstawie parametru `type`
+
+Przykład:
+```
+GET /api/books/search?q=java&type=TITLE
+GET /api/books/search?q=tolkien&type=AUTHOR
+GET /api/books/search?q=978&type=ISBN
+GET /api/books/search?q=book&type=ALL
+```
+
 ## Baza danych
 
 Schemat jest zarządzany przez **Flyway** (`src/main/resources/db/migration/`).

@@ -12,15 +12,19 @@ import com.example.bookstore.exception.DuplicateResourceException;
 import com.example.bookstore.exception.ResourceNotFoundException;
 import com.example.bookstore.model.Book;
 import com.example.bookstore.repository.BookRepository;
+import com.example.bookstore.strategy.search.BookSearchContext;
+import com.example.bookstore.strategy.search.BookSearchType;
 
 @Service
 @Transactional
 public class BookService {
 
 	private final BookRepository bookRepository;
+	private final BookSearchContext bookSearchContext;
 
-	public BookService(BookRepository bookRepository) {
+	public BookService(BookRepository bookRepository, BookSearchContext bookSearchContext) {
 		this.bookRepository = bookRepository;
+		this.bookSearchContext = bookSearchContext;
 	}
 
 	@Transactional(readOnly = true)
@@ -36,11 +40,14 @@ public class BookService {
 	}
 
 	@Transactional(readOnly = true)
-	public List<BookResponse> searchBooks(String query) {
+	public List<BookResponse> searchBooks(String query, BookSearchType type) {
 		if (query == null || query.isBlank()) {
 			return getAllBooks();
 		}
-		return bookRepository.search(query.trim()).stream()
+
+		BookSearchType searchType = type != null ? type : BookSearchType.ALL;
+
+		return bookSearchContext.search(query.trim(), searchType).stream()
 				.map(this::toResponse)
 				.toList();
 	}

@@ -1,4 +1,4 @@
-# Diagram ERD — Bookstore
+# Diagram ERD - Bookstore
 
 ```mermaid
 erDiagram
@@ -35,8 +35,8 @@ erDiagram
 
 ## Relacje
 
-- **users → reservations** — jeden użytkownik może mieć wiele rezerwacji
-- **books → reservations** — jedna książka może mieć wiele rezerwacji
+- **users → reservations** - jeden użytkownik może mieć wiele rezerwacji
+- **books → reservations** - jedna książka może mieć wiele rezerwacji
 
 ## Enumy
 
