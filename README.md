@@ -33,6 +33,33 @@ docker compose up --build
 Aplikacja: `http://localhost:8080`  
 Swagger UI: `http://localhost:8080/swagger-ui.html`
 
+### Uwierzytelnianie (JWT)
+
+**Rejestracja użytkownika:**
+```bash
+curl -X POST http://localhost:8080/api/auth/register \
+  -H 'Content-Type: application/json' \
+  -d '{"email":"user@example.com","password":"password123"}'
+```
+
+**Logowanie:**
+```bash
+curl -X POST http://localhost:8080/api/auth/login \
+  -H 'Content-Type: application/json' \
+  -d '{"email":"admin@bookstore.com","password":"admin123"}'
+```
+
+**Konto administratora (tworzone przy pierwszym starcie):**
+- Email: `admin@bookstore.com`
+- Hasło: `admin123`
+
+W Swaggerze kliknij **Authorize** i wklej token: `Bearer <token>`
+
+| Rola | Uprawnienia |
+|------|-------------|
+| USER | Przeglądanie książek, rezerwacje (wkrótce) |
+| ADMIN | Zarządzanie książkami (POST/PUT/DELETE) |
+
 ### Zatrzymanie
 
 ```bash

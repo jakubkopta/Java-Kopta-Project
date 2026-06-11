@@ -3,6 +3,7 @@ package com.example.bookstore.controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,6 +53,7 @@ public class BookController {
 	}
 
 	@PostMapping
+	@PreAuthorize("hasRole('ADMIN')")
 	@ResponseStatus(HttpStatus.CREATED)
 	@Operation(summary = "Create a new book")
 	public BookResponse createBook(@Valid @RequestBody BookRequest request) {
@@ -59,12 +61,14 @@ public class BookController {
 	}
 
 	@PutMapping("/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
 	@Operation(summary = "Update an existing book")
 	public BookResponse updateBook(@PathVariable Long id, @Valid @RequestBody BookRequest request) {
 		return bookService.updateBook(id, request);
 	}
 
 	@DeleteMapping("/{id}")
+	@PreAuthorize("hasRole('ADMIN')")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@Operation(summary = "Delete a book")
 	public void deleteBook(@PathVariable Long id) {
