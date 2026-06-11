@@ -57,8 +57,17 @@ W Swaggerze kliknij **Authorize** i wklej token: `Bearer <token>`
 
 | Rola | Uprawnienia |
 |------|-------------|
-| USER | Przeglądanie książek, rezerwacje (wkrótce) |
-| ADMIN | Zarządzanie książkami (POST/PUT/DELETE) |
+| USER | Przeglądanie książek, rezerwacje, zwroty |
+| ADMIN | Zarządzanie książkami, podgląd wszystkich rezerwacji |
+
+### Rezerwacje
+
+| Metoda | Endpoint | Rola |
+|--------|----------|------|
+| POST | `/api/reservations` | USER |
+| GET | `/api/reservations/my` | USER |
+| GET | `/api/reservations` | ADMIN |
+| POST | `/api/reservations/{id}/return` | USER (własne), ADMIN |
 
 ### Zatrzymanie
 
