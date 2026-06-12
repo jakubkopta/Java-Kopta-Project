@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookstore</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-icon">📚</span>
+        <h1>Bookstore</h1>
+      </div>
+      <div id="user-bar" class="user-bar hidden">
+        <span id="user-info"></span>
+        <button id="logout-btn" class="btn btn-ghost">Log out</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="auth-section" class="card auth-card">
+      <div class="tabs">
+        <button class="tab active" data-tab="login">Log in</button>
+        <button class="tab" data-tab="register">Register</button>
+      </div>
+
+      <form id="login-form" class="auth-form">
+        <h2>Welcome back</h2>
+        <p class="muted">Sign in to browse and reserve books.</p>
+        <label>
+          Email
+          <input type="email" name="email" required placeholder="you@example.com">
+        </label>
+        <label>
+          Password
+          <input type="password" name="password" required minlength="6" placeholder="••••••••">
+        </label>
+        <button type="submit" class="btn btn-primary">Log in</button>
+      </form>
+
+      <form id="register-form" class="auth-form hidden">
+        <h2>Create account</h2>
+        <p class="muted">Register as a reader to make reservations.</p>
+        <label>
+          Email
+          <input type="email" name="email" required placeholder="you@example.com">
+        </label>
+        <label>
+          Password
+          <input type="password" name="password" required minlength="6" placeholder="At least 6 characters">
+        </label>
+        <button type="submit" class="btn btn-primary">Register</button>
+      </form>
+    </section>
+
+    <section id="app-section" class="hidden">
+      <div class="toolbar card">
+        <div class="search-row">
+          <input id="search-input" type="search" placeholder="Search by title, author, ISBN…">
+          <select id="search-type">
+            <option value="ALL">All fields</option>
+            <option value="TITLE">Title</option>
+            <option value="AUTHOR">Author</option>
+            <option value="ISBN">ISBN</option>
+          </select>
+          <button id="search-btn" class="btn btn-secondary">Search</button>
+          <button id="clear-search-btn" class="btn btn-ghost">Clear</button>
+        </div>
+      </div>
+
+      <section id="admin-book-form-section" class="card admin-form-card hidden">
+        <div class="section-header">
+          <h2 id="admin-form-title">Add book</h2>
+          <button id="cancel-book-form-btn" type="button" class="btn btn-ghost hidden">Cancel</button>
+        </div>
+        <form id="book-form" class="book-form">
+          <input type="hidden" name="bookId" id="book-id">
+          <div class="form-grid">
+            <label>
+              Title
+              <input type="text" name="title" required maxlength="255" placeholder="Clean Code">
+            </label>
+            <label>
+              Author
+              <input type="text" name="author" required maxlength="255" placeholder="Robert Martin">
+            </label>
+            <label>
+              ISBN
+              <input type="text" name="isbn" required maxlength="20" placeholder="9780132350884">
+            </label>
+            <label>
+              Total copies
+              <input type="number" name="totalCopies" required min="0" value="1">
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary btn-inline" id="book-form-submit">Add book</button>
+        </form>
+      </section>
+
+      <div class="grid">
+        <section class="card">
+          <div class="section-header">
+            <h2>Books</h2>
+            <div class="section-actions">
+              <button id="add-book-btn" type="button" class="btn btn-secondary hidden">+ Add book</button>
+              <button id="refresh-books-btn" class="btn btn-ghost">Refresh</button>
+            </div>
+          </div>
+          <div id="books-list" class="books-list"></div>
+        </section>
+
+        <section class="card">
+          <div class="section-header">
+            <h2 id="reservations-title">My reservations</h2>
+            <button id="refresh-reservations-btn" class="btn btn-ghost">Refresh</button>
+          </div>
+          <p id="reservations-hint" class="muted hidden"></p>
+          <div id="reservations-list" class="reservations-list"></div>
+        </section>
+      </div>
+    </section>
+
+    <div id="toast" class="toast hidden"></div>
+  </main>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
