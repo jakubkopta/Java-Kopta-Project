@@ -103,6 +103,15 @@ Diagram ERD: [docs/erd.md](docs/erd.md)
 | `books` | Książki w księgarni |
 | `reservations` | Rezerwacje / wypożyczenia |
 
+## Testy
+
+```bash
+./mvnw test
+./mvnw verify
+```
+
+Raport pokrycia JaCoCo (wymagane ≥ 80%): `target/site/jacoco/index.html`
+
 ## Autor
 
 Jakub Kopta
