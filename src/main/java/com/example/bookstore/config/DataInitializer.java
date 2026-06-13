@@ -18,7 +18,7 @@ import com.example.bookstore.repository.UserRepository;
 @Component
 public class DataInitializer implements ApplicationRunner {
 
-	private static final String ADMIN_EMAIL = "admin@bookstore.com";
+	private static final String ADMIN_EMAIL = "admin@example.com";
 	private static final String ADMIN_PASSWORD = "admin123";
 	private static final String DEMO_USER_EMAIL = "user@example.com";
 	private static final String DEMO_USER_PASSWORD = "user123";

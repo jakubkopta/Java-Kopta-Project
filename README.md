@@ -133,7 +133,7 @@ Aplikacja używa **JWT** (Bearer token). Po zalogowaniu skopiuj token i użyj go
 
 | Pole  | Wartość               |
 | ----- | --------------------- |
-| Email | `admin@bookstore.com` |
+| Email | `admin@example.com` |
 | Hasło | `admin123`            |
 
 
@@ -142,7 +142,7 @@ Aplikacja używa **JWT** (Bearer token). Po zalogowaniu skopiuj token i użyj go
 ```bash
 curl -X POST http://localhost:8080/api/auth/login \
   -H 'Content-Type: application/json' \
-  -d '{"email":"admin@bookstore.com","password":"admin123"}'
+  -d '{"email":"admin@example.com","password":"admin123"}'
 ```
 
 **Przykład rejestracji użytkownika:**
@@ -159,7 +159,7 @@ Przy **pierwszym starcie na pustej bazie** aplikacja ładuje przykładowe dane (
 
 | Konto | Hasło | Rola |
 | ----- | ----- | ---- |
-| `admin@bookstore.com` | `admin123` | ADMIN |
+| `admin@example.com` | `admin123` | ADMIN |
 | `user@example.com` | `user123` | USER |
 
 Dodatkowo: **20 przykładowych książek** (bez rezerwacji).
